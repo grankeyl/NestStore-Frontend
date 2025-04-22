@@ -1,0 +1,134 @@
+.main {
+  padding-bottom: 30px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+  margin-top: 0;
+}
+
+.wallet {
+  padding-right: 8px;
+  word-break: break-all;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background-color: #fff;
+  padding: 16px;
+  font-size: 14px;
+  border-radius: 22px;
+}
+
+button.item:active {
+  transform: scale(0.97);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  color: #000;
+  border: 1px solid rgba(#000, 0.05);
+  background-color: #fafafa;
+  text-align: left;
+  -webkit-appearance: none;
+  appearance: none;
+  &::placeholder {
+    color: rgba(#000, 0.4);
+  }
+}
+
+.warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  &Text {
+    width: 70%;
+    text-align: center;
+    color: #f9855f;
+  }
+}
+
+.inputHolder {
+  position: relative;
+  &::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-image: url("/photos/ton.svg");
+    right: 0;
+    right: 22px;
+    font-size: 16px;
+    transform: translateY(-50%);
+  }
+}
+
+.selectHolder {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 6px;
+    top: 50%;
+    translate: 0 -50%;
+    right: 22px;
+    background-image: url("/public/gift/arrow.svg");
+  }
+}
+
+.button {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 42px;
+  background-color: var(--primary);
+  color: #fff;
+  text-align: center;
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(#000, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-transform: uppercase;
+}
+
+.description {
+  margin: 0;
+  margin-bottom: 18px;
+  font-weight: 500;
+}

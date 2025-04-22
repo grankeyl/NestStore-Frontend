@@ -1,0 +1,241 @@
+@use "./normilize.scss";
+@use "./variables.scss";
+
+@font-face {
+  font-family: "TTFirsNeue";
+  src: url("../fonts/TTFirsNeue-Regular.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "TTFirsNeue";
+  src: url("../fonts/TTFirsNeue-Medium.woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "TTFirsNeue";
+  src: url("../fonts/TTFirsNeue-Bold.woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "TTFirsNeue";
+  src: url("../fonts/TTFirsNeue-ExtraBold.woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "TTFirsNeue";
+  src: url("../fonts/TTFirsNeue-Black.woff2");
+  font-weight: 800;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 0 16px;
+  min-height: 100vh;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: linear-gradient(#eff5ff, #ffffff);
+  font-family: "TTFirsNeue", sans-serif !important;
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.no-padding {
+  background-size: cover !important;
+  padding: 0 !important;
+}
+
+.container {
+  padding-top: 18px;
+  height: calc(100vh - 84px);
+  max-width: 500px;
+  margin: 0 auto;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+h1 {
+  font-weight: 600;
+  line-height: 32px;
+  font-size: 24px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+input {
+  &:user-invalid {
+    border: 1px solid #ff0000;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+button {
+  border-radius: 41px;
+  outline: 0;
+  border: 0;
+  background-color: #fff;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  transition: 0.2s ease-out;
+}
+
+.Toastify__toast-container {
+  margin-bottom: 80px;
+}
+
+.toast {
+  $black: hsl(0, 0%, 0%);
+  $white: hsl(0, 0%, 0%);
+  $primary: hsl(241, 100%, 65%);
+  $secondary: hsl(241, 100%, 75%);
+  $gray-100: hsl(216, 7%, 14%);
+  $gray-200: hsl(225, 3%, 23%);
+  $gray-300: hsl(218, 6%, 25%);
+  $gray-400: hsl(252, 2%, 61%);
+  $green: hsl(144, 70%, 61%);
+  $red: hsl(353, 100%, 58%);
+  $orange: hsl(29, 100%, 55%);
+
+  $text-xs: 12px;
+  $text-sm: 14px;
+
+  -webkit-tap-highlight-color: transparent;
+  color: #000;
+  border-radius: 42px;
+  border: 1px solid rgb(#3b3e43, 0.6);
+  backdrop-filter: blur(90px);
+  background-size: 120%;
+  font-family: "TTFirsNeue", sans-serif;
+  font-size: $text-sm;
+  margin-bottom: unset;
+  min-height: unset;
+  margin-top: 10px;
+  --borderW: 2px;
+  padding: 16px;
+  padding-right: 60px;
+  &Success {
+    border: 1px solid #38d392;
+    color: #38d392;
+    background-color: rgba(#38d392, 0.1);
+    background-color: #fff;
+  }
+  &Error {
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    background-color: rgba(#ff0000, 0.1);
+  }
+  &Warning {
+    background-color: #fff;
+  }
+  &Info {
+    border: 1px solid #8380ff;
+    color: #8380ff;
+    background-color: rgba(#ffffff51, 0.1);
+  }
+  &Body {
+    padding: 0;
+  }
+  &Container {
+    z-index: 100000;
+  }
+  &Close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    background-color: transparent;
+    picture {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.modalDescription {
+  color: var(--primary);
+  padding: 0 14px;
+}
+
+.modalButton {
+  width: 100%;
+  display: flex;
+  border-radius: 42px;
+  justify-content: center;
+  padding: 14px 18px;
+  margin-top: 19px;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+@media only screen and (max-width: 480px) {
+  .toastContainer {
+    left: 50%;
+    bottom: 5vh;
+    transform: translateX(-50%);
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--primary);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  &Holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 80vh;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

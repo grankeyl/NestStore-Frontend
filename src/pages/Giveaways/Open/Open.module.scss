@@ -1,0 +1,227 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.main {
+  width: 100%;
+  height: -webkit-fill-available;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  padding: 33px 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.headline {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.mainGray {
+  width: 100%;
+  min-height: 100vh;
+  padding: 33px 16px;
+  background: #1E1E1E;
+  overflow-y: auto;
+}
+
+.giveaway-rare {
+  width: 100%;
+  background: url("/photos/giveaways/giveaway-open-rare-bg.png");
+}
+
+.giveaway-epic {
+  background: url("/photos/giveaways/giveaway-open-epic-bg.png");
+}
+
+.giveaway-legend {
+  background: url("/photos/giveaways/giveaway-open-legend-bg.png");
+}
+
+.openChecking, .openError {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & img {
+    width: 70px;
+    height: 70px;
+  }
+
+  & div, & canvas {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  & p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+    margin-top: 12px;
+    max-width: 270px;
+    text-align: center;
+  }
+}
+
+.openJoined {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & img {
+    width: 85px;
+    height: 90px;
+  }
+
+  &Badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 18px;
+
+    & span {
+      display: flex;
+      align-items: center;
+      height: 31px;
+      justify-content: center;
+      flex-direction: row;
+      font-size: 16px;
+      font-weight: 500;
+      background: #cacaca2a;
+      border-radius: 50px;
+      color: #fff;
+      border: 1px solid #fefefe2e;
+      margin: 0;
+      padding: 6px 11px;
+
+      & img {
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+      }
+
+      & p {
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        margin: auto;
+        max-width: 270px;
+        text-align: center; 
+      }
+    }
+  }
+
+  &Title {
+    width: 100%;
+
+    & h4 {
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      margin: auto;
+      margin-top: 19px;
+      max-width: 270px;
+      text-align: center;
+    }
+  }
+}
+
+.header {
+  width: 100%;
+  height: 90px;
+  margin-top: 30px;
+  padding-top: calc(var(--tg-safe-area-inset-top) - 14px);
+
+  &Holder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  &User {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 70px;
+
+      &Left {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: auto;
+
+          & img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+          }
+      }
+
+      &Right {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          justify-content: center;
+          margin-left: auto;
+      }
+
+      &RightWallet {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 14px;
+          font-weight: 500;
+          color: #2DB6FF;
+          height: 40px;
+          padding: 0px 16px;
+          border-radius: 50px;
+          border: 1px solid #2db5ff45;
+          background: #fff;
+
+          & img {
+              width: 24px;
+              height: 24px;
+              margin-left: -5px;
+          }
+
+          & span {
+              color: #2DB6FF;
+              font-weight: 500;
+              font-size: 14px;
+          }
+      }
+
+      &RightBasket {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 14px;
+          font-weight: 500;
+          background: #FFFFFF;
+          border-radius: 50px;
+          width: 40px;
+          height: 40px;
+          justify-content: center;
+      }
+  }
+}
+
+.openBottomBlocker {
+  width: 100%;
+  height: 100%;
+  padding: 33px 16px;
+  z-index: 100;
+}

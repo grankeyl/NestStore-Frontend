@@ -1,0 +1,134 @@
+section {
+  padding: 0 !important;
+}
+
+.headingWidget {
+  width: 100%;
+  height: fit-content;
+  background: #ffffff17;
+  border-radius: 0 0 32px 32px;
+  padding-bottom: 25px;
+  padding-top: calc(var(--tg-safe-area-inset-top) - 10px);
+
+  & .header {
+    width: 100%;
+    height: 90px;
+    padding-top: 25px;
+  
+    &Holder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+  }
+
+  &.rare {
+    background: url("/photos/giveaways/giveaway-head-rare.png") no-repeat;
+    background-size: auto;
+    background-position: center;
+  }
+
+  &.epic {
+    background: url("/photos/giveaways/giveaway-head-epic.png") no-repeat;
+    background-size: auto;
+    background-position: center;
+  }
+
+  &.legend {
+    background: url("/photos/giveaways/giveaway-head-legend.png") no-repeat;
+    background-size: auto;
+    background-position: center;
+  }
+
+  .headingWidgetContext {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & img {
+      width: 85px;
+      height: 90px;
+      margin: auto;
+    }
+  }
+  
+  .openJoined {
+    position: fixed;
+    justify-content: center;
+    flex-direction: column;
+
+    &Badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+
+      & span {
+        display: flex;
+        align-items: center;
+        height: 31px;
+        justify-content: center;
+        flex-direction: row;
+        font-size: 16px;
+        font-weight: 500;
+        background: #cacaca2a;
+        border-radius: 50px;
+        color: #fff;
+        border: 1px solid #fefefe2e;
+        margin: 0;
+        padding: 6px 11px;
+
+        & img {
+          width: 18px;
+          height: 18px;
+          margin-right: 5px;
+        }
+
+        & p {
+          font-size: 16px;
+          font-weight: 500;
+          color: #fff;
+          margin: auto;
+          max-width: 270px;
+          text-align: center; 
+        }
+      }
+    }
+
+    &Title {
+      width: 100%;
+
+      & h4 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #fff;
+        margin: auto;
+        margin-top: 19px;
+        max-width: 270px;
+        text-align: center;
+      }
+    }
+
+    &Descr {
+      width: 100%;
+
+      & p {
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffffac;
+        margin: auto;
+        margin-top: 19px;
+        max-width: 270px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.flexer {
+  display: flex;
+  gap: 9px;
+}

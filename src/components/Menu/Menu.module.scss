@@ -1,0 +1,41 @@
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(#fff, 0.8);
+  border: 1px solid rgba(#4e4bff, 0.05);
+  border-radius: 24px 24px 0 0;
+  padding: 16px 14px;
+  padding-bottom: 24px;
+  backdrop-filter: blur(12px);
+}
+
+.link {
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 9px;
+  filter: saturate(0);
+
+  & span {
+    text-align: center;
+  }
+
+  &.active {
+    color: var(--primary);
+    filter: saturate(1);
+  }
+
+  &.disabled {
+    opacity: .4;
+    filter: saturate(0);
+  }
+}

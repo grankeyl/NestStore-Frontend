@@ -1,0 +1,104 @@
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body:has(.modal) {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  animation: fade 0.2s;
+  inset: 0;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  background-color: rgba(#000, 0.2);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  padding: 16px;
+  transition: 0.2s ease-out;
+  opacity: 1;
+  visibility: visible;
+  bottom: 0;
+  padding-top: 46px;
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.content {
+  position: relative;
+  background-color: #fff;
+  padding: 14px 12px;
+  overflow: hidden;
+  border-radius: 32px;
+  width: 100%;
+  max-width: 476px;
+  margin: 0 auto;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headline {
+  max-width: 80%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  margin: auto;
+  margin-top: 3px;
+}
+
+.confirmDescr {
+  text-align: center;
+  color: var(--primary);
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  & button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px;
+    background-color: var(--primary);
+    color: #fff;
+
+    &.no {
+      width: 100%;
+      background-color: rgba(#000, 0.08);
+      color: #000;
+    }
+
+    &.yes {
+      width: 100%;
+      background-color: var(--primary);
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.radio {
+  width: 22px;
+  height: 22px;
+  appearance: none;
+  border: 1px solid rgba(#8380ff80, 0.5);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+
+  &::after {
+    content: "";
+    transition: 0.2s ease-out;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #8380ff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  &:checked {
+    border: 1px solid #8380ff;
+    &::after {
+      content: "";
+      background-color: #8380ff;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}

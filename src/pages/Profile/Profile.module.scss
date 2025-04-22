@@ -1,0 +1,299 @@
+.main {
+  padding-bottom: 30px;
+  margin-top: 15px;
+}
+
+.headline {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 18px 0;
+  margin-top: 0;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.title {
+  font-weight: 500;
+  margin: 0;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 22px;
+  border: 1px solid rgba(#cbd5e980, 0.5);
+  background-color: #fff;
+  font-weight: 500;
+  &Modal {
+    padding: 0;
+    border: 0;
+    & .list {
+      margin-top: 24px;
+    }
+    & button {
+      border-radius: 0;
+      border: 0;
+    }
+  }
+}
+
+.filter {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  &Button {
+    padding: 3px 12px;
+    background-color: transparent;
+    border: 1px solid #000;
+    &.active {
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+  }
+}
+
+.info {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.ava {
+  border-radius: 50%;
+}
+
+.badge {
+  padding: 5px 8px;
+  border-radius: 31px;
+  background-color: rgba(#cacaca33, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  &.Buy {
+    color: #38d392;
+    background-color: rgb(#38d392, 0.1);
+  }
+  &.Sell {
+    color: #fa365d;
+    background-color: rgb(#fa365d, 0.1);
+  }
+}
+
+button.listContent {
+  border-radius: 0;
+  color: #000;
+  background-color: transparent;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  border-radius: 12px;
+  background-color: rgba(#cacaca, 0.1);
+
+  &Content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    h4 {
+      color: #000;
+    }
+    
+    &:not(:first-child) {
+      border-top: 1px solid #e9e9e9;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 18px;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 16px;
+}
+
+.buttonHolder {
+  display: flex;
+  gap: 12px;
+}
+
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.button {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.toggle-switch, .toggle-switch .toggle-knob {
+  -moz-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.toggleswitch {
+  width: 50px;
+  height: 25px;
+  display: inline-block;
+  background-color: #ffffff;
+  margin: 2px;
+  margin-bottom: 5px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: solid 1px #d2d6de;
+  transition: all .19s linear;
+
+  &.active {
+    background-color: #C2C0FF;
+    border: solid 1px transparent;
+
+    & .toggleswitchThumb {
+      margin-left: 24px;
+      background: #fff;
+    }
+  }
+
+  &Thumb {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    background-color: #C2C0FF;
+    border: solid 1px rgba(126, 126, 126, 0.07);
+    border-radius: 26px;
+    margin-top: 2.5px;
+    margin-left: -24px;
+    transition: all .19s linear;
+  }
+}
+
+.disconnectWallet {
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  & span {
+    margin-right: auto;
+  }
+
+  & p {
+    margin: 0;
+    font-size: 14px;
+    color: #000000;
+    opacity: .5;
+    font-weight: 500;
+  }
+}
+
+.connectWalletBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+
+  & div {
+    width: 100%;
+  }
+
+  & button {
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2DB6FF;
+    height: 50px;
+    padding: 0px 19px;
+    border-radius: 22px;
+    border: 1px solid #2db5ff45;
+    box-shadow: none;
+    background: #fff;
+    min-width: 100%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    & svg {
+        &:nth-child(1) {
+            display: flex;
+            margin-left: -4px;
+
+            & path {
+                fill: #2DB6FF;
+            }
+        }
+
+        display: none;
+    }
+
+    & div {
+        color: #2DB6FF;
+        font-weight: 500;
+        font-size: 14px;
+        width: fit-content;
+    }
+
+    & svg {
+        display: none;
+    }
+  }
+}
+
+.clippingDisplay {
+  position: relative;
+  
+  .connectWalletBtn {
+    opacity: 0;
+    position: absolute;
+  }
+}

@@ -1,0 +1,32 @@
+:root {
+  --primary: #8380ff;
+}
+
+$black: hsl(0, 0%, 0%);
+$white: hsl(0, 0%, 100%);
+$bg: hsl(220, 7%, 9%);
+$primary: hsl(241, 100%, 65%);
+$secondary: hsl(241, 100%, 75%);
+$gray-100: hsl(216, 7%, 14%);
+$gray-200: hsl(225, 3%, 23%);
+$gray-300: hsl(218, 6%, 25%);
+$gray-400: hsl(252, 2%, 61%);
+$green: hsl(144, 70%, 61%);
+$red: hsl(353, 100%, 58%);
+$orange: hsl(29, 100%, 55%);
+
+$text-xs: 12px;
+$text-sm: 14px;
+$text-base: 16px;
+$text-md: 18px;
+$text-lg: 20px;
+$text-xl: 26px;
+$text-2xl: 32px;
+$text-3xl: 40px;
+
+$font-thin: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+$font-extrabold: 800;
