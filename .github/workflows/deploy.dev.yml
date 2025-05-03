@@ -1,0 +1,41 @@
+name: Deploy to Development
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Clean remote directory (with sudo -S)
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.DEV_SSH_HOST }}
+          username: ${{ secrets.DEV_SSH_USER }}
+          password: ${{ secrets.DEV_SSH_PASSWORD }}
+          script: |
+            echo "${{ secrets.DEV_SSH_PASSWORD }}" | sudo -S rm -rf /var/www/testnet.nestdex.dev/*
+
+      - name: Prepare remote dir
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.DEV_SSH_HOST }}
+          username: ${{ secrets.DEV_SSH_USER }}
+          password: ${{ secrets.DEV_SSH_PASSWORD }}
+          script: |
+            echo "${{ secrets.DEV_SSH_PASSWORD }}" | sudo -S mkdir -p /var/www/testnet.nestdex.dev
+            echo "${{ secrets.DEV_SSH_PASSWORD }}" | sudo -S chown -R $USER:$USER /var/www/testnet.nestdex.dev
+
+      - name: Deploy via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEV_SSH_HOST }}
+          username: ${{ secrets.DEV_SSH_USER }}
+          password: ${{ secrets.DEV_SSH_PASSWORD }}
+          source: "dist"
+          target: "/var/www/testnet.nestdex.dev/"
+          strip_components: 1

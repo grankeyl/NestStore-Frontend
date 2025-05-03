@@ -97,6 +97,12 @@ const App = () => {
     const params = new URLSearchParams(initData);
     const startParam = params.get('start_param');
 
+    console.log("startParam", startParam);
+
+    if (startParam && startParam === "my_gifts") {
+      navigate("/gift");
+    }
+
     if (startParam && startParam === "rGiveaways") {
       navigate("/giveaways");
     }
@@ -150,9 +156,16 @@ const App = () => {
 
     const initApp = async () => {
       try {
-        const initData = webApp.initData;
-        // const initData = import.meta.env.VITE_INIT_DATA;
-        
+        let initData = '';
+
+        const isDev = import.meta.env.DEV;
+
+        if (isDev === true) {
+          initData = import.meta.env.VITE_INIT_DATA;
+        } else {
+          initData = webApp.initData;
+        }
+
         if (!initData) {
           throw new Error("Init data is missing");
         }

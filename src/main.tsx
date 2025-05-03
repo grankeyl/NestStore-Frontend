@@ -11,15 +11,37 @@ import checkDevice from "@utils/checkDevice.ts";
 
 const tg = window.Telegram.WebApp as any;
 const rootElement = document.getElementById("root");
+const isDev = import.meta.env.DEV;
 
-if (tg.initDataUnsafe?.user?.id) {
+if (isDev && !tg.initDataUnsafe?.user?.id) {
   tg.expand();
 
   if (!checkDevice()) { tg.requestFullscreen(); }
 
   createRoot(rootElement!).render(
     <StrictMode>
-      <TonConnectUIProvider manifestUrl="https://store.nestdex.dev/manifest.json">
+      <TonConnectUIProvider manifestUrl="https://testnet.nestdex.dev/utils/manifest.json">
+        <I18nextProvider i18n={i18n}>
+            <BrowserRouter>
+              <UserProfileProvider>
+                <App />
+                <Toast />
+              </UserProfileProvider>
+            </BrowserRouter>
+        </I18nextProvider>
+      </TonConnectUIProvider>
+    </StrictMode>
+  );
+}
+
+if (!isDev && tg.initDataUnsafe?.user?.id) {
+  tg.expand();
+
+  if (!checkDevice()) { tg.requestFullscreen(); }
+
+  createRoot(rootElement!).render(
+    <StrictMode>
+      <TonConnectUIProvider manifestUrl="https://testnet.nestdex.dev/utils/manifest.json">
         <I18nextProvider i18n={i18n}>
             <BrowserRouter>
               <UserProfileProvider>

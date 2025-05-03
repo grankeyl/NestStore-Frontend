@@ -23,6 +23,7 @@ import { InputMask } from '@react-input/mask';
 import UseTelegram from "@hooks/useTelegram";
 import i18n from "@i18n";
 import ConfirmModal from "@components/Confirm";
+import { giftTypeDisplayNames } from "@data";
 
 interface Props {
   isTokenReady: boolean;
@@ -98,7 +99,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   const [sellGiftSection, setSellGiftSection] = useState<string>("sell");
 
   const [selectedGiftType, setSelectedGiftType] = useState<GiftType>("durovs_cap");
-  const [selectedImage, setSelectedImage] = useState<string>("https://store.nestdex.dev/images/durovs_cap/durov_cap_1.json");
+  const [selectedImage, setSelectedImage] = useState<string>("https://testnet.nestdex.dev/images/durovs_cap/durov_cap_1.json");
   const [isVisible, setIsVisible] = useState(false);
   const [isVipModalVisible, setIsVipModalVisible] = useState(false);
   const [tempSelectedImage, setTempSelectedImage] = useState<string>(selectedImage);
@@ -111,6 +112,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   const [isVisibleCardGift, setIsVisibleCardGift] = useState(false);
   const [isVisibleInfoGift, setIsVisibleInfoGift] = useState(false);
   const [isVisibleEditGift, setIsVisibleEditGift] = useState(false);
+  const [isVisibleSayHelloModal, setIsVisibleSayHelloModal] = useState(false);
 
   const [hasMore, setHasMore] = useState(true);
   const [isAuctionGift, setIsAuctionGift] = useState(false);
@@ -177,7 +179,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
       });
       setSelectedItem(response.data);
       setIsVisibleCardGift(true);
-      setIsVisibleInfoGift(false);
+      // setIsVisibleInfoGift(false);
     } catch (e) {
       console.error(e);
       showToast(t("store.errors.notFound"), "error");
@@ -259,6 +261,12 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   const handleWithdrawGift = async (id: any) => {
     try {
       setIsLoading(true);
+
+      if (!selectedMyGift?.free_withdraw && userProfile?.balance < 0.1) {
+        showToast(t("gift.topUpBalanceWithdraw"), "error");
+        return;
+      }
+
       const response = await axios.post(`https://apistore.nestdex.dev/user/gifts/withdraw`,
         { id: id },
         {
@@ -271,6 +279,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
     } catch (e) {
       const message = (t("giveawayCreate.toast.notFoundGifter") as string).replace("@", import.meta.env.VITE_GIFTER);
       showToast(message, "error")
+      setIsVisibleSayHelloModal(!localStorage.getItem("sayHelloWithdraw"));
     } finally {
       setIsLoading(false);
     }
@@ -371,7 +380,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
     
     try {
       const response = await axios.post(
-        "https://apistore.nestdex.dev/market/order/create",  gift, {
+        "https://apistore.nestdex.dev/market/order/create", gift, {
           headers: {
             Authorization: authToken,
             "Content-Type": "application/json",
@@ -474,6 +483,12 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
       setIsLoading(false);
     }
   }
+
+  const sayHelloGoWrite = () => {
+    localStorage.setItem("sayHelloWithdraw", true);
+    setIsVisibleSayHelloModal(false);
+    webApp.openTelegramLink('https://t.me/' + import.meta.env.VITE_GIFTER.replace('@', ''));
+  };
   
   useEffect(() => {
     getUserGifts();
@@ -487,6 +502,11 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
 
   useFetchGiftById(isTokenReady, authToken, setSelectedItem, setIsVisibleCardGift);
   useUserGiftsObserver(userGifts, lastItemRef, false, getUserGifts, hasMore);
+
+  const showInTelegram = () => {
+    const link = `https://t.me/nft/${giftTypeDisplayNames[selectedItem?.type]}-${selectedItem?.number}`;
+    webApp.openTelegramLink(link);
+  }
 
   return (
     <section className={styles.main}>
@@ -507,6 +527,21 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
         onCancel={() => setIsDeleteGiftConfirmVisible(false)}
       >
       </ConfirmModal>
+
+      <Modal isVisible={isVisibleSayHelloModal} setIsVisible={setIsVisibleSayHelloModal} paddingTop={24} type="storeCard" style={{ zIndex: 10000 }}>
+        <div className={styles.sayHelloHead}>
+          <h4>{t("modal.sayhello.title")}</h4>
+        </div>
+        <div className={styles.sayHelloDescr}>
+          <p>{t("modal.gifts.sayhello.descr").replace("@", import.meta.env.VITE_GIFTER)}</p>
+        </div>
+        <div className={styles.sayHelloImage}>
+          <img src="/photos/store/say-hello.png" alt="" />
+        </div>
+        <button onClick={sayHelloGoWrite} className={cn(styles.button, styles.sayHelloButton)}>
+          {t("modal.sayhello.button")}
+        </button>
+      </Modal>
 
       <Modal isVisible={isVisibleCardGift} setIsVisible={setIsVisibleCardGift} type="storeCard">
         <div 
@@ -577,6 +612,9 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
             </dd>
           </div>
         </dl>
+        <button onClick={() => showInTelegram()} className={cn(stylesStore.button, stylesStore.buttonModal, styles.buttonModalPreview)}>
+          <span style={{ margin: 'auto' }}>{t("gifts.modal.gift.preview.telegram")}</span>
+        </button>
         <button disabled={selectedItem?.seller_id === userProfile?.id} onClick={() => setIsVisibleCardGift(false)} className={cn(stylesStore.button, stylesStore.buttonModal)}>
           <span style={{ margin: 'auto' }}>{t("gifts.modal.gift.close")}</span>
         </button>
@@ -655,6 +693,12 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
               >
                 <img width={24} height={24} src={"/photos/gift/withdraw.svg"} alt="" />
                 <h4>{t("gifts.modal.info.title.label3")}</h4>
+                {!selectedMyGift?.free_withdraw && (
+                  <span>
+                    0.1
+                    <img src="/photos/ton.svg" alt="" />
+                  </span>
+                )}
               </div>
             )}
         </div>
@@ -883,13 +927,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
                   <span>{t("gift.create")}</span>
                   <div className={styles.price}>
                     <span>{isVipGift ? (3).toFixed(1) : (0.1).toFixed(1)}</span>
-                    {!isVipGift && (
-                      <>
-                        <div className={styles.minusPrice}></div>
-                        <span className={styles.salePrice}>0</span>
-                      </>
-                    )}
-                    <img src="/photos/ton.svg" alt="" />
+                    {isVipGift && (<img src="/photos/ton.svg" alt="" />)}
                   </div>
                 </>
               )}

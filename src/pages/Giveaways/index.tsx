@@ -28,6 +28,11 @@ const filters = ["All orders", "Buy", "Sell", "Closed"];
 const authToken = localStorage.getItem("token");
 
 
+function isGiveawayEnded(endTime: number | string | Date | undefined): boolean {
+  if (!endTime) return false;
+  return new Date(endTime).getTime() < Date.now();
+}
+
 function CountdownGiveaway({ endTime }: { endTime: any }) {
   const [timeLeftDays, setTimeLeftDays] = useState("");
 
@@ -244,6 +249,11 @@ const Giveaways: FC = () => {
 
       if (selectedGiveaway?.is_premium && !userProfile?.is_premium) {
         showToast(t("store.errors.premiumRequired"), "error");
+        return;
+      }
+
+      if (isGiveawayEnded(selectedGiveaway?.end_time)) {
+        showToast(t("store.errors.giveaway.ended"), "error");
         return;
       }
 
@@ -525,33 +535,60 @@ const Giveaways: FC = () => {
         <div className={styles.giveawayModalTerms}>
           <h4>{t("giveaway.modal.terms.title")}</h4>
           {["subscription", "subscription_live"].includes(selectedGiveaway?.type) && (
-            <p>{t("giveaway.modal.terms.descr1")}
-              <span>
-                {selectedGiveaway?.channels_usernames.map((channel, index) => (
-                  <a href={`https://t.me/${channel}`} target="_blank" rel="noreferrer"> @{channel}, </a>
-                ))}
-              </span> 
+            <p>
+              {t("giveaway.modal.terms.descr1")}
+              <span>&nbsp;
+                {selectedGiveaway?.channels_usernames.map((channel, index) => {
+                  const isFullUrl = channel.startsWith("https://");
+                  const username = isFullUrl ? channel : `https://t.me/${channel}`;
+                  const label = isFullUrl ? channel : `@${channel}`;
+                  return (
+                    <a key={index} href={username} target="_blank" rel="noreferrer">
+                      {label}
+                      {index !== selectedGiveaway.channels_usernames.length - 1 && ", "}
+                    </a>
+                  );
+                })}
+              </span>&nbsp;
               {t("giveaway.modal.terms.descr2")}
             </p>
           )}
           {selectedGiveaway?.type === "subscription_paid_participant" && (
-            <p>{t("giveaway.modal.terms.descr1")}
-            <span>
-              {selectedGiveaway?.channels_usernames.map((channel, index) => (
-                <a href={`https://t.me/${channel}`} target="_blank" rel="noreferrer"> @{channel}, </a>
-              ))}
-            </span> 
+            <p>
+              {t("giveaway.modal.terms.descr1")}
+              <span>&nbsp;
+                {selectedGiveaway?.channels_usernames.map((channel, index) => {
+                  const isFullUrl = channel.startsWith("https://");
+                  const username = isFullUrl ? channel : `https://t.me/${channel}`;
+                  const label = isFullUrl ? channel : `@${channel}`;
+                  return (
+                    <a key={index} href={username} target="_blank" rel="noreferrer">
+                      {label}
+                      {index !== selectedGiveaway.channels_usernames.length - 1 && ", "}
+                    </a>
+                  );
+                })}
+              </span>&nbsp;
               {t("giveaway.modal.terms.descr3")}
             </p>
           )}
           {selectedGiveaway?.type === "subscription_paid_ticket" && (
-            <p>{t("giveaway.modal.terms.descr1")}
-            <span>
-              {selectedGiveaway?.channels_usernames.map((channel, index) => (
-                <a href={`https://t.me/${channel}`} target="_blank" rel="noreferrer"> @{channel}, </a>
-              ))}
-            </span> 
-            {t("giveaway.modal.terms.descr4")}
+            <p>
+              {t("giveaway.modal.terms.descr1")}
+              <span>&nbsp;
+                {selectedGiveaway?.channels_usernames.map((channel, index) => {
+                  const isFullUrl = channel.startsWith("https://");
+                  const href = isFullUrl ? channel : `https://t.me/${channel}`;
+                  const label = isFullUrl ? channel : `@${channel}`;
+                  return (
+                    <a key={index} href={href} target="_blank" rel="noreferrer">
+                      {label}
+                      {index !== selectedGiveaway.channels_usernames.length - 1 && ", "}
+                    </a>
+                  );
+                })}
+              </span>&nbsp;
+              {t("giveaway.modal.terms.descr4")}
             </p>
           )}
         </div>
@@ -689,7 +726,10 @@ const Giveaways: FC = () => {
                     <h4>{t("giveaway.item.title")}</h4>
                   </div>
                   <div className={styles.giveawaysItemsItemContentCount}>
-                    <span>{giveaway.gifts_ids.length} {t("giveaway.item.gifts")}</span>
+                    <span>
+                      <img src="/photos/giveaways/gift.svg" alt="" />
+                      <p>{giveaway.gifts_ids.length}</p>
+                    </span>
                   </div>
                 </div>
                 <div className={styles.giveawaysItemsItemClock}>
@@ -725,7 +765,15 @@ const Giveaways: FC = () => {
                         <h4>{t("giveaway.item.title")}</h4>
                       </div>
                       <div className={styles.giveawaysItemsItemContentCount}>
-                        <span>{giveaway.gifts_ids.length} {t("giveaway.item.gifts")}</span>
+                        <span>
+                          <img src="/photos/giveaways/gift.svg" alt="" />
+                          <p>{giveaway.gifts_ids.length}</p>
+                        </span>
+                        {giveaway?.participants_ids.includes(userProfile?.id) && (
+                          <span className={styles.giveawaysItemsItemContentCountParticipants}>
+                            <img src="/photos/done.svg" alt="" />
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className={styles.giveawaysItemsItemClock}>
@@ -761,7 +809,10 @@ const Giveaways: FC = () => {
                     <h4>{t("giveaway.item.title")}</h4>
                   </div>
                   <div className={styles.giveawaysItemsItemContentCount}>
-                    <span>{giveaway.gifts_ids.length} {t("giveaway.item.gifts")}</span>
+                    <span>
+                      <img src="/photos/giveaways/gift.svg" alt="" />
+                      <p>{giveaway.gifts_ids.length}</p>
+                    </span>
                   </div>
                 </div>
                 <div className={styles.giveawaysItemsItemClock}>

@@ -243,6 +243,8 @@ const Store: FC<Props> = ({ isTokenReady }) => {
     try {
       setIsLoading(true);
 
+      console.log(newOffset);
+
       const response = await axios.get("https://apistore.nestdex.dev/market/gifts", {
         headers: { Authorization: authToken },
         params: {

@@ -84,6 +84,8 @@ const Cart: FC = () => {
         price: gift.price
       }));
 
+      console.log(transformedGifts);
+
       const response = await axios.post(
         "https://apistore.nestdex.dev/market/cart/buy", transformedGifts, {
           headers: {
@@ -98,6 +100,7 @@ const Cart: FC = () => {
         if (response.data.success) {
           setIsSuccessModalVisible(true);
           setLocalCartGifts([]);
+          setCartGifts([]);
         } 
 
         if (!response.data.success) {

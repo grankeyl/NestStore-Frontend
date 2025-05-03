@@ -23,6 +23,7 @@ import { showToast } from "@utils/showToast";
 import UseTelegram from "@hooks/useTelegram";
 import { validatePrice } from "@utils/formatBalance";
 import { useUserProfile } from "@contexts/user-profile";
+import { useCreateGiveawayStore } from "@stores/giveaway.store";
 
 interface Props {
   isTokenReady: boolean;
@@ -102,8 +103,10 @@ const Create: FC<Props> = () => {
   };
   
   const { userProfile } = useUserProfile();
+  const { createGiveawayChannels, setCreateGiveawayChannels } = useCreateGiveawayStore();
+
   const { webApp } = UseTelegram();
-  const [selectedChannels, setSelectedChannels] = useState<TelegramChannel[]>([]);
+  const [selectedChannels, setSelectedChannels] = useState<TelegramChannel[]>(createGiveawayChannels);
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("subscription");
   const [page, setPage] = useState("create");
@@ -189,12 +192,20 @@ const Create: FC<Props> = () => {
   
     if (isDuplicate) return;
   
-    setSelectedChannels([...selectedChannels, channel]);
+    let updatedChannels = [...selectedChannels, channel];
+  
+    if (updatedChannels.length > 8) {
+      updatedChannels = updatedChannels.slice(1);
+    }
+  
+    setSelectedChannels(updatedChannels);
+    setCreateGiveawayChannels(updatedChannels);
     setInputValue("");
   };
 
   const removeChannel = (username: string) => {
     setSelectedChannels(selectedChannels.filter(ch => ch.username !== username));
+    setCreateGiveawayChannels(selectedChannels.filter(ch => ch.username !== username));
   };
 
   const handleClickTerms = () => {

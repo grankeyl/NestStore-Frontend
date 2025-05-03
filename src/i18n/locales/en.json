@@ -7,6 +7,7 @@
   "store.bid.errors.invalidPrice": "Invalid price",
   "store.bid.success.message": "Your bid was accepted!",
   "store.errors.giveaway.full": "Quantity of participants is full",
+  "store.errors.giveaway.ended": "Giveaway has ended",
   "app.loading": "Loading...",
   "header.connectWallet": "Connect wallet",
   "activity.title": "Activity",
@@ -87,6 +88,7 @@
   "gifts.modal.info.title.label2": "Withdraw from sale",
   "gifts.modal.info.title.label3": "Withdraw gift",
   "gifts.modal.gift.close": "Close",
+  "gifts.modal.gift.preview.telegram": "Show on Telegram",
   "sellGift.title": "Sell gift",
   "sellGift.sell": "Sell",
   "sellGift.auction": "Auction",
@@ -211,6 +213,7 @@
   "gift.somethingWentWrong": "Something went wrong",
   "gift.successModalDescription": "You have successfully listed your gift for sale",
   "gift.title": "My gifts",
+  "gift.topUpBalanceWithdraw": "Top up your balance by 0.1 TON to withdraw a gift",
   "gift.topUpBalance": "Top up your balance by 0.1 TON to create a gift",
   "gift.topUpBalanceVip": "Top up your balance by 3 TON to create a gift",
   "gift.usernameRequired": "You must have a username",
@@ -355,6 +358,7 @@
   "warningModal.warningDescription": "Be sure to hand over the gift before pressing the 'Gift sent' confirmation button.",
   "warningModal.warningDescriptionStars": "Be sure to hand over the stars before pressing the 'Stars sent' confirmation button.",
   "withdrawal.amountExceedsBalance": "Withdrawal amount exceeds your balance",
+  "withdrawal.amountOneTon": "Minimum withdrawal amount is 1 TON",
   "withdrawal.balanceNotAvailable": "Your balance is not available",
   "withdrawal.receivingWallet": "Receiving Wallet",
   "withdrawal.requestCreated": "Withdrawal request has been created",
@@ -372,5 +376,6 @@
   "modal.sayhello.title": "Say hello",
   "modal.sayhello.descr": "Before buying a gift, write to our bot @ \"Hello\"",
   "modal.giveaway.sayhello.descr": "Before using a giveaways, write to our bot  @ \"Hello\"",
+  "modal.gifts.sayhello.descr": "Before withdraw a gift, write to our bot  @ \"Hello\"",
   "modal.sayhello.button": "Go write"
 }

@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import styles from "./Activity.module.scss";
 import cn from "classnames";
 import { useOrdersStore } from "@stores/orders.store";
@@ -16,6 +16,7 @@ import UseTelegram from "@hooks/useTelegram";
 import { Link } from "react-router-dom";
 import { getModelLottie } from "@utils/nftUtils";
 import { validatePrice } from "@utils/formatBalance";
+import { useUserActivityObserver } from "./hooks/useUserActivityObserver";
 
 const filters = ["All orders", "Buy", "Sell", "Closed"];
 
@@ -71,6 +72,10 @@ const Activity: FC = () => {
   const [activity, setActivity] = useState([]);
   const { userProfile } = useUserProfile();
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  let lastItemRef = useRef<HTMLDivElement | null>(null);
+
   const [intervalGetActivity, setIntervalGetActivity] = useState<NodeJS.Timer | null>(null);
 
   useEffect(() => {
@@ -108,10 +113,18 @@ const Activity: FC = () => {
   const getActivity = async (newOffset: number = 0) => {
     try {
       const response = await axios.get("https://apistore.nestdex.dev/historyactivity", {
-        headers: { Authorization: authToken }
+        headers: { Authorization: authToken },
+        params: {
+          offset: newOffset,
+          limit: 20
+        },
       });
       const activity = response.data;
-      console.log(activity);
+      if (activity.length === 0) {
+        setHasMore(false);
+        return;
+      }
+
       setActivity((prevActivity) => {
         const updatedActivity = newOffset === 0 ? activity : [...prevActivity, ...updatedActivity];
         return updatedActivity
@@ -143,6 +156,8 @@ const Activity: FC = () => {
     };
   }, []);
 
+  useUserActivityObserver(activity, lastItemRef, isLoading, getActivity, hasMore);
+
   return (
     <section className={styles.main}>
       <div className={styles.header}>
@@ -163,7 +178,9 @@ const Activity: FC = () => {
           {activity
             .filter((item: any) => typeMapping[item.type])
             .map((item: any, index: number) => (
-              <ActivityBuyGift key={index} item={item} />
+              <ActivityBuyGift 
+              ref={activity.length === index + 1 ? lastItemRef : null} 
+              key={index} item={item} />
             ))}
         </div>
       )}

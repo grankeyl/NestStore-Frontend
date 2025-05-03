@@ -61,6 +61,7 @@ export const giftTypes = [
   "homemade_cake",
   "desk_calendar",
   "bday_candle",
+  "easter_egg",
 ] as const;
 
 export const giftTypeDisplayNames = {
@@ -124,6 +125,7 @@ export const giftTypeDisplayNames = {
   "homemade_cake": "Homemade Cake",
   "desk_calendar": "Desk Calendar",
   "bday_candle": "B-Day Candle",
+  "easter_egg": "Easter Egg",
 };
 
 export const giftImagesOfTypes: { name: GiftType; cover: string }[] = [
@@ -187,4 +189,5 @@ export const giftImagesOfTypes: { name: GiftType; cover: string }[] = [
   { name: "homemade_cake", cover: "Angel Cake" },
   { name: "desk_calendar", cover: "Adult Tasks" },
   { name: "bday_candle", cover: "Backyard" },
+  { name: "easter_egg", cover: "Bronze" },
 ];

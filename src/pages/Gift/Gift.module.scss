@@ -412,6 +412,25 @@
       color: #000;
       margin: 0;
     }
+
+    & span {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      font-size: 13px;
+      font-weight: 500;
+      color: #000;
+      text-transform: none;
+
+      & img {
+        width: 16px;
+        height: 16px;
+        margin-left: 5px;
+        margin-top: -2px;
+      }
+    }
   }
 }
 
@@ -701,5 +720,80 @@
     width: 256px;
     line-height: 21px;
     margin: 0;
+  }
+}
+
+.sayHelloHead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  & h4 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+  }
+}
+
+.sayHelloDescr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: auto;
+  margin-bottom: 20px;
+  max-width: 400px;
+  text-align: left;
+
+  & p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    margin: 0;
+
+    & span {
+      color: #8380FF;
+      font-weight: 500;
+    }
+  }
+}
+
+.sayHelloImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 22px;
+
+  & img {
+    height: 54px;
+  }
+}
+
+.sayHelloButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 14px 18px;
+  margin-top: 19px;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.buttonModal {
+  span {
+    font-weight: 500;
+  }
+}
+
+.buttonModalPreview {
+  background-color: transparent !important;
+  border: 1px solid #8380FF;
+  
+  span {
+    font-weight: 500;
+    color: #8380FF;
   }
 }

@@ -297,6 +297,7 @@
         border: 1px solid #fefefe2e;
         margin: 0;
         padding: 6px 11px;
+        margin-right: 8px;
       }
     }
 
@@ -724,4 +725,32 @@
 
 .marginNone {
   margin-top: 8px;
+}
+
+.giveawaysItemsItemContentCount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    height: fit-content;
+
+    & img {
+      width: 18px;
+      height: 18px;
+    }
+  
+    & p {
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      margin: 0;
+      margin-top: 1px;
+    }
+  }
 }
