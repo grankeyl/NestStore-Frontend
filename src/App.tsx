@@ -257,6 +257,10 @@ const App = () => {
   
     return () => clearInterval(userProfileInterval);
   }, []);
+  
+  if (!isTokenReady) {
+    return <Loader />;
+  }
 
   if (isError) {
     return (

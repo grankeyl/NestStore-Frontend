@@ -24,6 +24,7 @@ import { startCountdownAuctionDays, startCountdownAuctionHours } from "@utils/ti
 import ConfirmModal from "@components/Confirm";
 import { validatePrice } from "@utils/formatBalance";
 import { useStoreAuctionObserver } from "./hooks/useStoreAuctionObserver";
+import { giftTypeDisplayNames } from "@data";
 
 interface Props {
   isTokenReady: boolean;
@@ -481,8 +482,6 @@ const Store: FC<Props> = ({ isTokenReady }) => {
         } else {
           amount = selectedItem?.price + selectedItem?.min_step;
         }
-      } else {
-        amount = selectedItem?.price;
       }
 
       if (userProfile?.balance < amount) { 
@@ -615,6 +614,11 @@ const Store: FC<Props> = ({ isTokenReady }) => {
   const shareGift = async (id: any) => {
     console.log(selectedItem?.id)
     const link = `https://t.me/share/url?url=${encodeURIComponent(`https://t.me/nestore_robot?startapp=gift_${selectedItem?.id}`)}`;
+    webApp.openTelegramLink(link);
+  }
+  
+  const showInTelegram = () => {
+    const link = `https://t.me/nft/${giftTypeDisplayNames[selectedItem?.type]}-${selectedItem?.number}`;
     webApp.openTelegramLink(link);
   }
 
@@ -752,6 +756,9 @@ const Store: FC<Props> = ({ isTokenReady }) => {
             </dd>
           </div>
         </dl>
+        <button onClick={() => showInTelegram()} className={cn(styles.button, styles.buttonModal, styles.buttonModalPreview)}>
+          <span style={{ margin: 'auto' }}>{t("gifts.modal.gift.preview.telegram")}</span>
+        </button>
         <div className={`${styles.buttonHolder} ${styles.listButtons}`}>
           <button disabled={selectedItem?.seller_id === userProfile?.id} onClick={handleClickByGift} className={cn(styles.button, styles.buttonModal)}>
             {selectedItem?.seller_id !== userProfile?.id && <span>{t("store.buy")}</span>}
@@ -906,6 +913,9 @@ const Store: FC<Props> = ({ isTokenReady }) => {
               )}
             </div>
           </div>
+          <button onClick={() => showInTelegram()} className={cn(styles.button, styles.buttonModal, styles.buttonModalPreviewNoBottom)}>
+            <span style={{ margin: 'auto' }}>{t("gifts.modal.gift.preview.telegram")}</span>
+          </button>
           <div className={cn(styles.priceInput, styles.auctionModalPriceInput)}>
             <input
               min={selectedItem?.min_step}
