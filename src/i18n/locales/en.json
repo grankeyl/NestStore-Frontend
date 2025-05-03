@@ -370,6 +370,7 @@
   "history.title": "History",
   "history.type.buy_gift": "Buy",
   "history.type.sell_gift": "Sell",
+  "history.type.final_bid_gift": "Sell",
   "history.type.withdraw": "Withdrawal",
   "history.type.deposit": "Deposit",
   "history.type.sell_stars": "Sell Stars",

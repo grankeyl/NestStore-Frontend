@@ -370,6 +370,7 @@
   "history.title": "История",
   "history.type.buy_gift": "Куплен",
   "history.type.sell_gift": "Продан",
+  "history.type.final_bid_gift": "Продан",
   "history.type.withdraw": "Вывод",
   "history.type.deposit": "Пополнение",
   "history.type.sell_stars": "Продано Stars",

@@ -159,7 +159,8 @@ const History: FC = () => {
                         </div>
                         <div className={styles.historyItemsItemContext}>
                           <div className={styles.historyItemsItemContextTitle}>
-                            {t(`history.type.${item.type}`)} {item.gift || ""} #{item.gift_number || 999}
+                            <h4>{t(`history.type.${item.type}`)} {item.gift || ""}</h4>
+                            <span>#{item.gift_number || 999}</span>
                           </div>
                           <div className={styles.historyItemsItemContextDescr}>
                             <p>{convertToMSK(item.created_at) ?? ""}</p>
