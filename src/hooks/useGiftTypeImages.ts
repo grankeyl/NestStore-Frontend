@@ -65,6 +65,7 @@ const useGiftTypeImages = () => {
     homemade_cake: [],
     desk_calendar: [],
     bday_candle: [],
+    easter_egg: [],
   });
 
   useEffect(() => {
