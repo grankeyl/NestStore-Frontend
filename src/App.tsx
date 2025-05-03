@@ -80,7 +80,7 @@ const App = () => {
 
     try {
       const response = await axios.post(
-        `https://apistore.nestdex.dev/giveaway/${giveawayId}`,
+        `https://storeapi.nestdex.dev/giveaway/${giveawayId}`,
         {},
         { headers: { Authorization: authToken } }
       );
@@ -132,7 +132,7 @@ const App = () => {
 
   const getUserProfile = async (authToken: string) => {
     try {
-      const response = await axios.get("https://apistore.nestdex.dev/user/me", {
+      const response = await axios.get("https://storeapi.nestdex.dev/user/me", {
         headers: { Authorization: `${authToken}` },
       });
 
@@ -172,7 +172,7 @@ const App = () => {
 
         checkStartApp(initData);
 
-        const loginResponse = await axios.post("https://apistore.nestdex.dev/user/login", {
+        const loginResponse = await axios.post("https://storeapi.nestdex.dev/user/login", {
           init_data: initData,
         });
 
@@ -185,7 +185,7 @@ const App = () => {
         localStorage.setItem("token", authToken);
         setTokenReady(true);
 
-        const profileResponse = await axios.get("https://apistore.nestdex.dev/user/me", {
+        const profileResponse = await axios.get("https://storeapi.nestdex.dev/user/me", {
           headers: { Authorization: `${authToken}` },
         });
 

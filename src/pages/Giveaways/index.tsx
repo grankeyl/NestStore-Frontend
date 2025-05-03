@@ -115,7 +115,7 @@ const Giveaways: FC = () => {
 
     try {
       const response = await axios.post(
-        `https://apistore.nestdex.dev/giveaway/${id}`,
+        `https://storeapi.nestdex.dev/giveaway/${id}`,
         {},
         { headers: { Authorization: authToken } }
       );
@@ -133,7 +133,7 @@ const Giveaways: FC = () => {
   const getMeGiveaways = async () => {
     try {
       const response = await axios.post(
-        "https://apistore.nestdex.dev/giveaways",
+        "https://storeapi.nestdex.dev/giveaways",
         {},
         {
           params: { type: "user" },
@@ -161,7 +161,7 @@ const Giveaways: FC = () => {
   const getAllGiveaways = async () => {
     try {
       const response = await axios.post(
-        "https://apistore.nestdex.dev/giveaways",
+        "https://storeapi.nestdex.dev/giveaways",
         {},
         {
           params: { type: "all" },
@@ -267,7 +267,7 @@ const Giveaways: FC = () => {
       }
 
       const response = await axios.post(
-        `https://apistore.nestdex.dev/giveaway/join`,
+        `https://storeapi.nestdex.dev/giveaway/join`,
         { 
           id: id,
           referrer_id: selectedGiveaway.user_id,

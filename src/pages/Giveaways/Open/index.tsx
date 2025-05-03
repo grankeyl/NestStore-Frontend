@@ -74,7 +74,7 @@ const GiveawayOpen: FC<{ isTokenReady: boolean }> = () => {
       if (!giveawayId) return;
 
       const response = await axios.get(
-        `https://apistore.nestdex.dev/giveaway/${giveawayId}/participants`,
+        `https://storeapi.nestdex.dev/giveaway/${giveawayId}/participants`,
         { headers: { Authorization: authToken } }
       );
 
@@ -118,7 +118,7 @@ const GiveawayOpen: FC<{ isTokenReady: boolean }> = () => {
   const openedGiveaway = async (id: number) => {
     try {
       const response = await axios.post(
-        `https://apistore.nestdex.dev/giveaway/${id}`,
+        `https://storeapi.nestdex.dev/giveaway/${id}`,
         {},
         { headers: { Authorization: authToken } }
       );
@@ -185,7 +185,7 @@ const GiveawayOpen: FC<{ isTokenReady: boolean }> = () => {
       }
 
       const response = await axios.post(
-        `https://apistore.nestdex.dev/giveaway/join`,
+        `https://storeapi.nestdex.dev/giveaway/join`,
         payload,
         { headers: { Authorization: authToken } }
       );

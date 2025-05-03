@@ -45,7 +45,7 @@ const MyGifts: FC = () => {
 
   const loadUserGifts = () => {
     axios
-      .get("https://apistore.nestdex.dev/user/gifts", { headers: { Authorization: authToken } })
+      .get("https://storeapi.nestdex.dev/user/gifts", { headers: { Authorization: authToken } })
       .then((response) => {
         if (response.status === 200) {
           setUserGifts(response.data);
@@ -60,7 +60,7 @@ const MyGifts: FC = () => {
     if (!id) return;
 
     try {
-      const response = await axios.delete(`https://apistore.nestdex.dev/user/gifts/${id}`, {
+      const response = await axios.delete(`https://storeapi.nestdex.dev/user/gifts/${id}`, {
         headers: { Authorization: authToken },
       });
 
@@ -91,7 +91,7 @@ const MyGifts: FC = () => {
 
   //   if (isDeleted) {
   //     try {
-  //       const response = await axios.post("https://apistore.nestdex.dev/market/order/create", newGift, { headers: { Authorization: authToken } });
+  //       const response = await axios.post("https://storeapi.nestdex.dev/market/order/create", newGift, { headers: { Authorization: authToken } });
 
   //       if (response.status === 200) {
   //         loadUserGifts();

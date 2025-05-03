@@ -70,7 +70,7 @@ const Orders: FC = () => {
 
   const getOrder = async (id?: number) => {
     try {
-      const response = await axios.get(`https://apistore.nestdex.dev/market/order/${id}`, {
+      const response = await axios.get(`https://storeapi.nestdex.dev/market/order/${id}`, {
         headers: { Authorization: authToken },
       });
       setSelectedItem(response.data);
@@ -106,7 +106,7 @@ const Orders: FC = () => {
         Sell: "sell",
         Closed: "closed",
       };
-      const response = await axios.get("https://apistore.nestdex.dev/market/order/all", {
+      const response = await axios.get("https://storeapi.nestdex.dev/market/order/all", {
         headers: { Authorization: authToken },
         params: { order_type: filterMap[orderType] },
       });

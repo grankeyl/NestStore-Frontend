@@ -222,7 +222,7 @@ const Create: FC<Props> = () => {
 
   const getUserGifts = async (newOffset: number = 0) => {
     try {
-      const response = await axios.get("https://apistore.nestdex.dev/user/gifts", {
+      const response = await axios.get("https://storeapi.nestdex.dev/user/gifts", {
         headers: { Authorization: authToken },
         params: {
           offset: newOffset,
@@ -273,7 +273,7 @@ const Create: FC<Props> = () => {
     const finalUsername = username.replace("@", "");
 
     try {
-      const response = await axios.get(`https://apistore.nestdex.dev/telegram/channel/${finalUsername}`, {
+      const response = await axios.get(`https://storeapi.nestdex.dev/telegram/channel/${finalUsername}`, {
         headers: { Authorization: authToken }
       });
 
@@ -354,7 +354,7 @@ const Create: FC<Props> = () => {
       };
 
       const response = await axios.post(
-        `https://apistore.nestdex.dev/giveaway/create`,
+        `https://storeapi.nestdex.dev/giveaway/create`,
         dataArray,
         {
           headers: { Authorization: authToken },

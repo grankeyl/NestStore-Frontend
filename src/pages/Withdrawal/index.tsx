@@ -75,7 +75,7 @@ const Withdrawal: FC = () => {
 
     try {
       const response = await axios.post(
-        "https://apistore.nestdex.dev/create-withdraw-request",
+        "https://storeapi.nestdex.dev/create-withdraw-request",
         { amount: amountNumber, wallet: wallet },
         { headers: { Authorization: authToken } });
 
