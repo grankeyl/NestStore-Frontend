@@ -469,6 +469,11 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
       //   return;
       // }
 
+      if (editPriceGift <= 0) {
+        showToast(t("gift.price.error"), "error");
+        return;
+      }
+
       const response = await axios.post(`https://storeapi.nestdex.dev/user/gifts/${id}`,
         { price: editPriceGift },
         { headers: { Authorization: authToken } }
@@ -478,7 +483,6 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
       showToast(t("gift.modal.edit.success"), "success");
     } catch (e) {
       console.error(e);
-      showToast(t("store.errors.notFound"), "error");
     } finally {
       setIsLoading(false);
     }
@@ -914,7 +918,6 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
                   <img className={styles.ton} src="/photos/ton.svg" alt="" width={20} height={20} />
                 </div>
                 <p className={styles.descriptionPrice}>
-                  {!isVipGift && (t("sellGift.price.description"))}
                   {isVipGift && (t("sellGift.price.description").replace("0.1", 3))}
                 </p>
               </label>
