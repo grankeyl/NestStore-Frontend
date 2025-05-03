@@ -43,6 +43,7 @@ export interface IGift {
   auction_end_time: string;
   is_vip: boolean;
   bids: any[];
+  for_sell: number;
 }
 
 export interface IStar {
@@ -70,6 +71,7 @@ export interface IOrder extends IGift {
   status: StatusType;
   created_order_date: string;
   completed_order_date: string;
+  for_sell: number;
 }
 
 export interface IUserProfile {

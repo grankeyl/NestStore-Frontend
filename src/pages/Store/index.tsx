@@ -103,7 +103,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
   
   const authToken = localStorage.getItem("token");
 
-  const { userProfile } = useUserProfile();
+  const { userProfile, lastActivity } = useUserProfile();
 
   const { cartGifts, setCartGifts } = useCartStore();
   const [localCartGifts, setLocalCartGifts] = useState<any[]>(cartGifts);
@@ -147,8 +147,6 @@ const Store: FC<Props> = ({ isTokenReady }) => {
 
   const [startParam, setStartParam] = useState<string | null>(null);
   const [hasHandledStartParam, setHasHandledStartParam] = useState(false);
-  
-  const [lastActivity, setLastActivity] = useState<any>([]);
 
   const userFriendlyAddress = useTonAddress();
 
@@ -590,29 +588,29 @@ const Store: FC<Props> = ({ isTokenReady }) => {
     }
   };
 
-  const getActivity = async (newOffset: number = 0) => {
-    try {
-      const response = await axios.get("https://storeapi.nestdex.dev/historyactivity", {
-        headers: { Authorization: authToken }
-      });
-      const activity = response.data;
+  // const getActivity = async (newOffset: number = 0) => {
+  //   try {
+  //     const response = await axios.get("https://storeapi.nestdex.dev/historyactivity", {
+  //       headers: { Authorization: authToken }
+  //     });
+  //     const activity = response.data;
       
-      setLastActivity(() => {
-        const latestSellGift = activity
-          .filter((gift: any) => gift.type === 'sell_gift')
-          .sort((a: any, b: any) => b.id - a.id)[0];
+  //     setLastActivity(() => {
+  //       const latestSellGift = activity
+  //         .filter((gift: any) => gift.type === 'sell_gift')
+  //         .sort((a: any, b: any) => b.id - a.id)[0];
       
-        return latestSellGift ? [latestSellGift] : [];
-      });
-      console.log(lastActivity)
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  //       return latestSellGift ? [latestSellGift] : [];
+  //     });
+  //     console.log(lastActivity)
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
-  useEffect(() => {
-    getActivity();
-  }, []);
+  // useEffect(() => {
+  //   getActivity();
+  // }, []);
 
   const shareGift = async (id: any) => {
     console.log(selectedItem?.id)

@@ -450,7 +450,7 @@ const Create: FC<Props> = () => {
           <div className={styles.myGifts}>
             <div className={styles.myGiftsItems}>
               {userGifts
-                .filter(gift => !gift.is_active)
+                .filter(gift => !gift.is_active && gift.for_sell === 1)
                 .map((gift, index) =>
                   gift && gift.id ? (
                     <div 

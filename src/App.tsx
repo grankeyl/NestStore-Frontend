@@ -41,7 +41,7 @@ const App = () => {
 
   const navigate = useNavigate();
 
-  const { setUserProfile } = useUserProfile();
+  const { setLastActivity, setUserProfile } = useUserProfile();
   const { userProfile } = useUserProfile();
   const [_, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -97,8 +97,6 @@ const App = () => {
     const params = new URLSearchParams(initData);
     const startParam = params.get('start_param');
 
-    console.log("startParam", startParam);
-
     if (startParam && startParam === "my_gifts") {
       navigate("/gift");
     }
@@ -151,8 +149,27 @@ const App = () => {
     }
   };
 
+  const getActivity = async (authToken: string) => {
+    try {
+      const response = await axios.get("https://storeapi.nestdex.dev/historyactivity", {
+        headers: { Authorization: authToken }
+      });
+      const activity = response.data;
+  
+      const latestSellGift = activity
+        .filter((gift: any) => gift.type === 'sell_gift')
+        .sort((a: any, b: any) => b.id - a.id)[0];
+  
+      setLastActivity(latestSellGift ? [latestSellGift] : []);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     webApp.disableVerticalSwipes();
+
+    localStorage.removeItem("token");
 
     const initApp = async () => {
       try {
@@ -199,6 +216,7 @@ const App = () => {
             is_premium: user.is_premium ?? false,
           };
           setUserProfile(userProfile);
+          await getActivity(authToken);
         }
 
         // const deleteStartParam = () => {

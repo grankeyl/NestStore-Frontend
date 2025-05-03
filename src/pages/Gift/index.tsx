@@ -464,10 +464,10 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
     try {
       setIsLoading(true);
 
-      if (0.05 > userProfile.balance) {
-        showToast(t("store.errors.insufficientBalance", { amount: (0.05 - userProfile.balance).toFixed(1) }), "error");
-        return;
-      }
+      // if (0.05 > userProfile.balance) {
+      //   showToast(t("store.errors.insufficientBalance", { amount: (0.05 - userProfile.balance).toFixed(1) }), "error");
+      //   return;
+      // }
 
       const response = await axios.post(`https://storeapi.nestdex.dev/user/gifts/${id}`,
         { price: editPriceGift },
@@ -720,8 +720,8 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
             max={99999}
           />
           <button className={cn(styles.editButton)} type="button" onClick={() => handleEditGiftChange(selectedMyGift?.id)}>
-            <span>{t("gifts.modal.edit.button").replace("0", 0.05)}</span>
-            <img src="/photos/ton.svg" alt="" width={20} height={20} />
+            <span>{t("gifts.modal.edit.button").replace("0", "").replace("for", "").replace("за", "")}</span>
+            {/* <img src="/photos/ton.svg" alt="" width={20} height={20} /> */}
           </button>
         </div>
       </Modal>
@@ -926,7 +926,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
                 <>
                   <span>{t("gift.create")}</span>
                   <div className={styles.price}>
-                    <span>{isVipGift ? (3).toFixed(1) : (0.1).toFixed(1)}</span>
+                    <span>{isVipGift ? (3).toFixed(1) : ''}</span>
                     {isVipGift && (<img src="/photos/ton.svg" alt="" />)}
                   </div>
                 </>
@@ -997,7 +997,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
               ) : (
                 <>
                   <span>{t("gift.create")}</span>
-                  <div className={styles.price}>
+                  {/* <div className={styles.price}>
                     <span>{(0.1).toFixed(1)}</span>
                     {!isVipGift && (
                       <>
@@ -1006,7 +1006,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
                       </>
                     )}
                     <img src="/photos/ton.svg" alt="" />
-                  </div>
+                  </div> */}
                 </>
               )}
             </button>
