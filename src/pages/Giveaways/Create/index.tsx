@@ -226,7 +226,8 @@ const Create: FC<Props> = () => {
         headers: { Authorization: authToken },
         params: {
           offset: newOffset,
-          limit: 20
+          limit: 20,
+          for_sell: 1
         },
       });
 
@@ -450,7 +451,7 @@ const Create: FC<Props> = () => {
           <div className={styles.myGifts}>
             <div className={styles.myGiftsItems}>
               {userGifts
-                .filter(gift => !gift.is_active && gift.for_sell === 1)
+                .filter(gift => !gift.is_active)
                 .map((gift, index) =>
                   gift && gift.id ? (
                     <div 

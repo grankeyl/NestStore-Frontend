@@ -754,7 +754,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
 
             <div className={stylesStore.nftsList}>
               {userGifts.map((gift, index) => (
-                <div>
+                <div key={index}>
                   <div 
                     ref={userGifts.length === index + 1 ? lastItemRef : null} 
                     key={`${gift.id}-${index}`}
@@ -780,7 +780,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
                                 <div className={stylesStore.patternBgGrid}>
                                   {Array.from({ length: 15 }).map((_, i) => (
                                     <img
-                                      key={i}
+                                      key={`pattern-${selectedItem?.id}-${i}`}
                                       src={getSymbolLottie(gift.type, gift.pattern_name as any)}
                                       alt=""
                                       style={{
