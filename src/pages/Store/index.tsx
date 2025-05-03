@@ -915,6 +915,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
               id="stepChangeAuctionPrice"
               value={stepChangeAuctionPrice || ''}
               onChange={(e) => setStepChangeAuctionPrice(e.target.value)}
+              step={0.01}
               max={99999}
             />
             <img className={styles.ton} src="/photos/ton.svg" alt="" width={20} height={20} />
@@ -940,7 +941,8 @@ const Store: FC<Props> = ({ isTokenReady }) => {
               )}
               {selectedItem?.bids && selectedItem?.bids.length === 1 && (
                 <>
-                  <span>{validatePrice(selectedItem?.price)}</span>
+                  {selectedItem && !stepChangeAuctionPrice && (<span>{validatePrice(selectedItem?.price)}</span>)}
+                  {selectedItem && stepChangeAuctionPrice && (<span>{stepChangeAuctionPrice}</span>)}
                 </>
               )}
               {selectedItem?.bids && selectedItem?.bids.length > 1 && (
