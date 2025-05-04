@@ -87,7 +87,7 @@ const Cart: FC = () => {
       console.log(transformedGifts);
 
       const response = await axios.post(
-        "https://storeapi.nestdex.dev/market/cart/buy", transformedGifts, {
+        "https://apistore.nestdex.dev/market/cart/buy", transformedGifts, {
           headers: {
             Authorization: authToken,
             "Content-Type": "application/json",

@@ -67,7 +67,7 @@ const StarOrders: FC = () => {
 
   const getOrder = async (id?: number) => {
     try {
-      const response = await axios.get(`https://storeapi.nestdex.dev/star/${id}`, {
+      const response = await axios.get(`https://apistore.nestdex.dev/star/${id}`, {
         headers: { Authorization: authToken },
       });
       setSelectedItem(response.data);
@@ -97,7 +97,7 @@ const StarOrders: FC = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("https://storeapi.nestdex.dev/star/all?on_market=false", {
+      const response = await axios.get("https://apistore.nestdex.dev/star/all?on_market=false", {
         headers: { Authorization: authToken },
       });
       setOrders(response.data);

@@ -42,7 +42,7 @@ const Deposit: FC = () => {
   const fetchWalletAddress = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("https://storeapi.nestdex.dev/deposit-wallet-address", {
+      const response = await axios.get("https://apistore.nestdex.dev/deposit-wallet-address", {
         headers: { Authorization: token },
       });
 

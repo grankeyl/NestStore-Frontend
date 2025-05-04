@@ -181,7 +181,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get(`https://storeapi.nestdex.dev/market/gifts/${id}`, {
+      const response = await axios.get(`https://apistore.nestdex.dev/market/gifts/${id}`, {
         headers: { Authorization: authToken },
       });
   
@@ -206,7 +206,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
   const handleCardClickAuction = async (id: any) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`https://storeapi.nestdex.dev/market/gifts/${id}`, {
+      const response = await axios.get(`https://apistore.nestdex.dev/market/gifts/${id}`, {
         headers: { Authorization: authToken },
       });
       setSelectedItem(response.data);
@@ -244,7 +244,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
 
       console.log(newOffset);
 
-      const response = await axios.get("https://storeapi.nestdex.dev/market/gifts", {
+      const response = await axios.get("https://apistore.nestdex.dev/market/gifts", {
         headers: { Authorization: authToken },
         params: {
           sort_by: filters.sort,
@@ -291,7 +291,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
     try {
       setIsLoadingAuction(true);
 
-      const response = await axios.get("https://storeapi.nestdex.dev/market/gifts", {
+      const response = await axios.get("https://apistore.nestdex.dev/market/gifts", {
         headers: { Authorization: authToken },
         params: {
           sort_by: filters.sort,
@@ -447,7 +447,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
 
   const handleBuyGiftConfirm = async () => {
     try {
-      const response = await axios.post("https://storeapi.nestdex.dev/market/order/buy", { id: selectedItem?.id }, { headers: { Authorization: authToken } });
+      const response = await axios.post("https://apistore.nestdex.dev/market/order/buy", { id: selectedItem?.id }, { headers: { Authorization: authToken } });
       
       if (response.status === 200) {
         userProfile.balance -= selectedItem.price;
@@ -489,7 +489,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
       }
 
       const response = await axios.post(
-        "https://storeapi.nestdex.dev/market/order/new-bid", 
+        "https://apistore.nestdex.dev/market/order/new-bid", 
         {
           id: selectedItem?.id,
           amount: amount,

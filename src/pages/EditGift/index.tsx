@@ -34,7 +34,7 @@ const EditGift: FC = () => {
     }
 
     axios
-      .get(`https://storeapi.nestdex.dev/market/gifts/${giftId}`, {
+      .get(`https://apistore.nestdex.dev/market/gifts/${giftId}`, {
         headers: { Authorization: authToken },
       })
       .then(({ data, status }) => {
@@ -61,7 +61,7 @@ const EditGift: FC = () => {
     };
 
     try {
-      const response = await axios.post(`https://storeapi.nestdex.dev/user/gifts/${giftId}`, updatedGift, {
+      const response = await axios.post(`https://apistore.nestdex.dev/user/gifts/${giftId}`, updatedGift, {
         headers: {
           Authorization: authToken,
         },
