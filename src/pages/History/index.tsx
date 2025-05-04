@@ -89,7 +89,7 @@ const History: FC = () => {
 
   const getHistory = async (newOffset: number = 0) => {
     try {
-      const response = await axios.get("https://apistore.nestdex.dev/history", {
+      const response = await axios.get("https://storeapi.nestdex.dev/history", {
         headers: { Authorization: authToken }
       });
 

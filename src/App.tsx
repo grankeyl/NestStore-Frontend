@@ -80,7 +80,7 @@ const App = () => {
 
     try {
       const response = await axios.post(
-        `https://apistore.nestdex.dev/giveaway/${giveawayId}`,
+        `https://storeapi.nestdex.dev/giveaway/${giveawayId}`,
         {},
         { headers: { Authorization: authToken } }
       );
@@ -130,7 +130,7 @@ const App = () => {
 
   const getUserProfile = async (authToken: string) => {
     try {
-      const response = await axios.get("https://apistore.nestdex.dev/user/me", {
+      const response = await axios.get("https://storeapi.nestdex.dev/user/me", {
         headers: { Authorization: `${authToken}` },
       });
 
@@ -151,7 +151,7 @@ const App = () => {
 
   const getActivity = async (authToken: string) => {
     try {
-      const response = await axios.get("https://apistore.nestdex.dev/historyactivity", {
+      const response = await axios.get("https://storeapi.nestdex.dev/historyactivity", {
         headers: { Authorization: authToken }
       });
       const activity = response.data;
@@ -187,7 +187,7 @@ const App = () => {
           throw new Error("Init data is missing");
         }
 
-        const loginResponse = await axios.post("https://apistore.nestdex.dev/user/login", {
+        const loginResponse = await axios.post("https://storeapi.nestdex.dev/user/login", {
           init_data: initData,
         });
 
@@ -202,7 +202,7 @@ const App = () => {
         setTokenReady(true);
         checkStartApp(initData);
 
-        const profileResponse = await axios.get("https://apistore.nestdex.dev/user/me", {
+        const profileResponse = await axios.get("https://storeapi.nestdex.dev/user/me", {
           headers: { Authorization: `${authToken}` },
         });
 

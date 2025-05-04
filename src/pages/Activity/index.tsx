@@ -112,7 +112,7 @@ const Activity: FC = () => {
 
   const getActivity = async (newOffset: number = 0) => {
     try {
-      const response = await axios.get("https://apistore.nestdex.dev/historyactivity", {
+      const response = await axios.get("https://storeapi.nestdex.dev/historyactivity", {
         headers: { Authorization: authToken },
         params: {
           offset: newOffset,

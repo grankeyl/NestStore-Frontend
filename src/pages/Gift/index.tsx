@@ -145,7 +145,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
 
   const getUserGifts = async (newOffset: number = 0) => {
     try {
-      const response = await axios.get("https://apistore.nestdex.dev/user/gifts", {
+      const response = await axios.get("https://storeapi.nestdex.dev/user/gifts", {
         headers: { Authorization: authToken },
         params: {
           offset: newOffset,
@@ -174,7 +174,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   const handleCardClick = async (id: any) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`https://apistore.nestdex.dev/user/gifts/${id.toString()}`, {
+      const response = await axios.get(`https://storeapi.nestdex.dev/user/gifts/${id.toString()}`, {
         headers: { Authorization: authToken },
       });
       setSelectedItem(response.data);
@@ -210,7 +210,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
         showToast(t("store.errors.insufficientBalance", { amount: (selectedItem.price - userProfile.balance).toFixed(1) }), "error");
         return;
       }
-      const response = await axios.post("https://apistore.nestdex.dev/market/order/buy", { id: selectedItem?.id }, { headers: { Authorization: authToken } });
+      const response = await axios.post("https://storeapi.nestdex.dev/market/order/buy", { id: selectedItem?.id }, { headers: { Authorization: authToken } });
       if (response.status === 200) navigate("/orders");
     } catch (error) {
       showToast(t("store.errors.somethingWentWrong"), "error");
@@ -221,7 +221,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   const handleSellGift = async (id: any) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`https://apistore.nestdex.dev/user/gifts/${id}`, {
+      const response = await axios.get(`https://storeapi.nestdex.dev/user/gifts/${id}`, {
         headers: { Authorization: authToken },
       });
       setSelectedItem(response.data);
@@ -236,12 +236,12 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
 
   const handleDeleteGift = async (id: any) => {
     try {
-      const response = await axios.get(`https://apistore.nestdex.dev/user/gifts/${id.toString()}`, {
+      const response = await axios.get(`https://storeapi.nestdex.dev/user/gifts/${id.toString()}`, {
         headers: { Authorization: authToken },
       });
       setSelectedItem(response.data);
 
-      const getGiftMarket = await axios.get(`https://apistore.nestdex.dev/market/gifts/${id.toString()}`, {
+      const getGiftMarket = await axios.get(`https://storeapi.nestdex.dev/market/gifts/${id.toString()}`, {
         headers: { Authorization: authToken },
       });
 
@@ -267,7 +267,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
         return;
       }
 
-      const response = await axios.post(`https://apistore.nestdex.dev/user/gifts/withdraw`,
+      const response = await axios.post(`https://storeapi.nestdex.dev/user/gifts/withdraw`,
         { id: id },
         {
           headers: { Authorization: authToken },
@@ -380,7 +380,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
     
     try {
       const response = await axios.post(
-        "https://apistore.nestdex.dev/market/order/create", gift, {
+        "https://storeapi.nestdex.dev/market/order/create", gift, {
           headers: {
             Authorization: authToken,
             "Content-Type": "application/json",
@@ -416,7 +416,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   const handleDeleteGiftConfirm = async () => {
     try {
       const response = await axios.post(
-        `https://apistore.nestdex.dev/user/gifts/remove`, { id: selectedItem?.id }, {
+        `https://storeapi.nestdex.dev/user/gifts/remove`, { id: selectedItem?.id }, {
           headers: { Authorization: authToken },
         }
       );
@@ -446,7 +446,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   const handleEditGift = async (id: any) => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`https://apistore.nestdex.dev/user/gifts/${id}`, {
+      const response = await axios.get(`https://storeapi.nestdex.dev/user/gifts/${id}`, {
         headers: { Authorization: authToken },
       });
       setSelectedItem(response.data);
@@ -474,7 +474,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
         return;
       }
 
-      const response = await axios.post(`https://apistore.nestdex.dev/user/gifts/${id}`,
+      const response = await axios.post(`https://storeapi.nestdex.dev/user/gifts/${id}`,
         { price: editPriceGift },
         { headers: { Authorization: authToken } }
       );

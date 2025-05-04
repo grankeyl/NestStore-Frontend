@@ -86,7 +86,7 @@ const SellerModal: FC<Props> = ({ selectedItem, getCardInfo, fetchOrders }) => {
 
   const handleCancel = async (id: number) => {
     try {
-      const response = await axios.post("https://apistore.nestdex.dev/market/order/seller-cancel", { id }, { headers: { Authorization: authToken } });
+      const response = await axios.post("https://storeapi.nestdex.dev/market/order/seller-cancel", { id }, { headers: { Authorization: authToken } });
       if (response.data.success) {
         setIsVisible(false);
         fetchOrders("All orders");
@@ -98,7 +98,7 @@ const SellerModal: FC<Props> = ({ selectedItem, getCardInfo, fetchOrders }) => {
 
   const handleAcceptOrder = async (id: number) => {
     try {
-      const response = await axios.post("https://apistore.nestdex.dev/market/order/seller-accept", { id }, { headers: { Authorization: authToken } });
+      const response = await axios.post("https://storeapi.nestdex.dev/market/order/seller-accept", { id }, { headers: { Authorization: authToken } });
       if (response.data.success) {
         setIsWarningModalVisible(true);
         getCardInfo(selectedItem?.id);
@@ -110,7 +110,7 @@ const SellerModal: FC<Props> = ({ selectedItem, getCardInfo, fetchOrders }) => {
 
   const handleConfirm = async (id: number) => {
     try {
-      const response = await axios.post("https://apistore.nestdex.dev/market/order/confirm-transfer", { id }, { headers: { Authorization: authToken } });
+      const response = await axios.post("https://storeapi.nestdex.dev/market/order/confirm-transfer", { id }, { headers: { Authorization: authToken } });
       if (response.data.success) {
         getCardInfo(selectedItem?.id);
       }
