@@ -385,7 +385,7 @@ const Create: FC<Props> = () => {
       setIsSubmitting(false);
     }
   }
-       
+
   useEffect(() => {
     setIsSubmitting(false);
     getUserGifts();
@@ -614,7 +614,7 @@ const Create: FC<Props> = () => {
                     <label htmlFor="startPrice" className={styles.label}>
                       <span>{t("giveawayCreate.form.label3")}</span>
                       <div className={styles.priceInput}>
-                        <input type="number" min={0.05} step={0.001} placeholder="0" onChange={handleChangePriceTicket} name="price" />
+                        <input type="number" min={0.05} step={0.001} placeholder="0" onChange={handleChangePriceTicket} name="price" required />
                         <img className={styles.ton} src="/photos/ton.svg" alt="" width={20} height={20} />
                       </div>
                     </label>
