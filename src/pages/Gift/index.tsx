@@ -18,7 +18,7 @@ import { giftTypeBackdrops } from "@data/gifts";
 import { useFiltersStore } from "@stores/shop.store";
 import { useUserGiftsObserver } from "./hooks/useUserGiftsObserver";
 import { useFetchGiftById } from "./hooks/useFetchGiftById";
-import { getModelLottie, getNftBackground, getNftLottie, getSymbolLottie } from "@utils/nftUtils";
+import { getModelLottie, getNftBackground, getNftLottie, getSymbolLottie, regexGiftModel } from "@utils/nftUtils";
 import { InputMask } from '@react-input/mask';
 import UseTelegram from "@hooks/useTelegram";
 import i18n from "@i18n";
@@ -510,7 +510,7 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   useUserGiftsObserver(userGifts, lastItemRef, false, getUserGifts, hasMore);
 
   const showInTelegram = () => {
-    const link = `https://t.me/nft/${giftTypeDisplayNames[selectedItem?.type]}-${selectedItem?.number}`;
+    const link = `https://t.me/nft/${regexGiftModel(selectedItem?.type)?.replace(" ", "")}-${selectedItem?.number}`;
     webApp.openTelegramLink(link);
   }
 

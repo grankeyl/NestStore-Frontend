@@ -16,7 +16,7 @@ import { useFetchGiftById } from "./hooks/useFetchGiftById";
 import UseTelegram from "@hooks/useTelegram";
 import { useCartStore } from "@stores/cart.store";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { getModelLottie, getModelPng, getNftBackground, getNftLottie, getSymbolLottie } from "@utils/nftUtils";
+import { getModelLottie, getModelPng, getNftBackground, getNftLottie, getSymbolLottie, regexGiftModel } from "@utils/nftUtils";
 
 import { useTonAddress } from "@tonconnect/ui-react";
 import { convertToMSK, formatDate } from "@utils/formatDate";
@@ -587,30 +587,6 @@ const Store: FC<Props> = ({ isTokenReady }) => {
     }
   };
 
-  // const getActivity = async (newOffset: number = 0) => {
-  //   try {
-  //     const response = await axios.get("https://apistore.nestdex.dev/historyactivity", {
-  //       headers: { Authorization: authToken }
-  //     });
-  //     const activity = response.data;
-      
-  //     setLastActivity(() => {
-  //       const latestSellGift = activity
-  //         .filter((gift: any) => gift.type === 'sell_gift')
-  //         .sort((a: any, b: any) => b.id - a.id)[0];
-      
-  //       return latestSellGift ? [latestSellGift] : [];
-  //     });
-  //     console.log(lastActivity)
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getActivity();
-  // }, []);
-
   const shareGift = async (id: any) => {
     console.log(selectedItem?.id)
     const link = `https://t.me/share/url?url=${encodeURIComponent(`https://t.me/nestore_robot?startapp=gift_${selectedItem?.id}`)}`;
@@ -618,7 +594,7 @@ const Store: FC<Props> = ({ isTokenReady }) => {
   }
   
   const showInTelegram = () => {
-    const link = `https://t.me/nft/${giftTypeDisplayNames[selectedItem?.type]}-${selectedItem?.number}`;
+    const link = `https://t.me/nft/${regexGiftModel(selectedItem?.type)?.replace(" ", "")}-${selectedItem?.number}`;
     webApp.openTelegramLink(link);
   }
 

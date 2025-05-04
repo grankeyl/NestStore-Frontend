@@ -41,7 +41,7 @@ const App = () => {
 
   const navigate = useNavigate();
 
-  const { setLastActivity, setUserProfile } = useUserProfile();
+  const { lastActivity, setLastActivity, setUserProfile } = useUserProfile();
   const { userProfile } = useUserProfile();
   const [_, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -258,7 +258,7 @@ const App = () => {
     return () => clearInterval(userProfileInterval);
   }, []);
   
-  if (!isTokenReady) {
+  if (!isTokenReady || !lastActivity) {
     return <Loader />;
   }
 
