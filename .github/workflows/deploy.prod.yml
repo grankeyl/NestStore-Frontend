@@ -7,35 +7,47 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build project
+        run: npm run build
+
       - name: Clean remote directory (with sudo -S)
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          host: ${{ secrets.DEV_SSH_HOST }}
+          username: ${{ secrets.DEV_SSH_USER }}
+          password: ${{ secrets.DEV_SSH_PASSWORD }}
           script: |
-            echo "${{ secrets.SSH_PASSWORD }}" | sudo -S rm -rf /var/www/store.nestdex.dev/*
+            echo "${{ secrets.DEV_SSH_PASSWORD }}" | sudo -S rm -rf /var/www/store.nestdex.dev/*
 
       - name: Prepare remote dir
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          host: ${{ secrets.DEV_SSH_HOST }}
+          username: ${{ secrets.DEV_SSH_USER }}
+          password: ${{ secrets.DEV_SSH_PASSWORD }}
           script: |
-            echo "${{ secrets.SSH_PASSWORD }}" | sudo -S mkdir -p /var/www/store.nestdex.dev
-            echo "${{ secrets.SSH_PASSWORD }}" | sudo -S chown -R $USER:$USER /var/www/store.nestdex.dev
+            echo "${{ secrets.DEV_SSH_PASSWORD }}" | sudo -S mkdir -p /var/www/store.nestdex.dev
+            echo "${{ secrets.DEV_SSH_PASSWORD }}" | sudo -S chown -R $USER:$USER /var/www/store.nestdex.dev
 
       - name: Deploy via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          host: ${{ secrets.DEV_SSH_HOST }}
+          username: ${{ secrets.DEV_SSH_USER }}
+          password: ${{ secrets.DEV_SSH_PASSWORD }}
           source: "dist"
           target: "/var/www/store.nestdex.dev/"
           strip_components: 1
