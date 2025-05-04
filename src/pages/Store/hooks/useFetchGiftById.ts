@@ -12,7 +12,7 @@ export const useFetchGiftById = (isTokenReady: boolean, authToken: string | null
     if (isTokenReady && giftIdFromQuery) {
       const fetchGiftById = async () => {
         try {
-          const response = await axios.get(`https://storeapi.nestdex.dev/market/gifts/${giftIdFromQuery}`, {
+          const response = await axios.get(`https://apistore.nestdex.dev/market/gifts/${giftIdFromQuery}`, {
             headers: { Authorization: authToken },
           });
           setSelectedItem(response.data);
