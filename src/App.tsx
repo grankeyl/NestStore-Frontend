@@ -187,8 +187,6 @@ const App = () => {
           throw new Error("Init data is missing");
         }
 
-        checkStartApp(initData);
-
         const loginResponse = await axios.post("https://storeapi.nestdex.dev/user/login", {
           init_data: initData,
         });
@@ -200,7 +198,9 @@ const App = () => {
 
         const authToken = loginResponse.data.token;
         localStorage.setItem("token", authToken);
+        
         setTokenReady(true);
+        checkStartApp(initData);
 
         const profileResponse = await axios.get("https://storeapi.nestdex.dev/user/me", {
           headers: { Authorization: `${authToken}` },
