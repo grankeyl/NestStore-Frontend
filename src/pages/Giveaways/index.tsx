@@ -373,7 +373,7 @@ const Giveaways: FC = () => {
                 <div className={styles.giveawaysItemsItemContentCount}>
                   <span className={styles.flexed} style={{ marginBottom: '4px' }}>
                     <img src="/photos/giveaways/ticket.svg" alt="" />
-                    <p className={styles.resetText}>{getCountDuplicates()} {t("giveaway.item.tickets")}</p>
+                    <p className={styles.resetText}>{selectedGiveaway?.user_tickets} {t("giveaway.item.tickets")}</p>
                   </span>
                 </div>
               </div>
@@ -513,7 +513,7 @@ const Giveaways: FC = () => {
               </dd>
               <dd className={styles.description}>
                 <dt className={styles.listBlockerText}>
-                  {selectedGiveaway?.participants_ids.length}
+                  {selectedGiveaway?.tickets}
                 </dt>
               </dd>
             </div>
