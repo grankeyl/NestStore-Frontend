@@ -495,7 +495,9 @@ const Gift: FC<Props> = ({ isTokenReady }) => {
   };
   
   useEffect(() => {
-    getUserGifts();
+    if (isTokenReady) {
+      getUserGifts();
+    }
   }, [isTokenReady, filters]);
 
   useEffect(() => {

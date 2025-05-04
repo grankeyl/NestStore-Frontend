@@ -27,6 +27,10 @@ const filters = ["All orders", "Buy", "Sell", "Closed"];
 
 const authToken = localStorage.getItem("token");
 
+interface Props {
+  isTokenReady: boolean;
+}
+
 
 function isGiveawayEnded(endTime: number | string | Date | undefined): boolean {
   if (!endTime) return false;
@@ -49,7 +53,7 @@ function CountdownGiveaway({ endTime }: { endTime: any }) {
   return <p className={styles.resetText}>{timeLeftDays}</p>;
 }
 
-const Giveaways: FC = () => {  
+const Giveaways: FC<Props> = ({ isTokenReady }) => {
   document.body.classList.remove("no-padding");
 
   const location = useLocation();
@@ -226,10 +230,12 @@ const Giveaways: FC = () => {
   }, [amountTickets, selectedGiveaway]);
 
   useEffect(() => {
-    initGiveaways();
-    getMeGiveaways();
-    getAllGiveaways();
-  }, []);
+    if (isTokenReady) {
+      initGiveaways();
+      getMeGiveaways();
+      getAllGiveaways();
+    }
+  }, [isTokenReady]);
 
   const handleShowMoreGifts = () => {
     setShowMoreGifts(true);

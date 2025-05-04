@@ -31,7 +31,7 @@ interface Props {
 
 const authToken = localStorage.getItem("token");
 
-const Create: FC<Props> = () => {
+const Create: FC<Props> = ({ isTokenReady }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<"ru" | "en">(
     (localStorage.getItem("selectedLanguage") === "ru" || localStorage.getItem("selectedLanguage") === "en") 
       ? localStorage.getItem("selectedLanguage") as "ru" | "en" 
@@ -387,9 +387,11 @@ const Create: FC<Props> = () => {
   }
 
   useEffect(() => {
-    setIsSubmitting(false);
-    getUserGifts();
-  }, [page]);
+    if (isTokenReady) {
+      setIsSubmitting(false);
+      getUserGifts();
+    }
+  }, [isTokenReady, page]);
   
   useUserGiftsObserver(userGifts, lastItemRef, false, getUserGifts, hasMore);
 

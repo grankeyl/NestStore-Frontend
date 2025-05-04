@@ -13,7 +13,12 @@ import Modal from "@components/Modal";
 import Radio from "@components/ui/radio";
 import i18n from "@i18n";
 
-const Profile: FC = () => {
+
+interface Props {
+  isTokenReady: boolean;
+}
+
+const Profile: FC<Props> = ({ isTokenReady }) => {
   document.body.classList.remove("no-padding");
   
   const { webApp } = useTelegram();

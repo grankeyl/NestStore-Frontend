@@ -198,7 +198,7 @@ const App = () => {
 
         const authToken = loginResponse.data.token;
         localStorage.setItem("token", authToken);
-        
+
         setTokenReady(true);
         checkStartApp(initData);
 
@@ -298,8 +298,8 @@ const App = () => {
         <Route path="history" element={<History />} />
         <Route path="activity" element={<Activity />} />
         <Route path="cart" element={<Cart />} />
-        <Route path="giveaways" element={<Giveaways />} />
-        <Route path="giveaways/:giveawayId" element={<Giveaways />} />
+        <Route path="giveaways" element={<Giveaways isTokenReady={isTokenReady} />} />
+        <Route path="giveaways/:giveawayId" element={<Giveaways isTokenReady={isTokenReady} />} />
         <Route path="giveaway/create" element={<GiveawayCreate isTokenReady={isTokenReady} />} />
         {/* <Route
           path="starorders"
@@ -321,7 +321,7 @@ const App = () => {
           />
         </Route>
         <Route path="profile">
-          <Route index element={<Profile />} />
+          <Route index element={<Profile isTokenReady={isTokenReady} />} />
           <Route path="gifts" element={<MyGifts />} />
           <Route
             path="deposit"
